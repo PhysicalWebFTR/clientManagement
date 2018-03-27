@@ -1,0 +1,3 @@
+export const FETCH_OWNER = 'FETCH_OWNER'
+export const CHANGE_STATUS_READY = 'CHANGE_STATUS_READY'
+export const UPDATE = 'UPDATE'
