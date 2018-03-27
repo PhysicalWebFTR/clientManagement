@@ -8,10 +8,10 @@ import { updateAction } from '../../store/actions'
 
 class ButtonUpdate extends Component {
   render() {
-    if (this.props.orderLists && this.props.orderLists.length > 0) {
+    if (this.props.owner && this.props.owner.length > 0) {
       return (
         <View>
-          <Button onPress={() => this.props.updateAction(this.props.orderLists)} full success>
+          <Button onPress={() => this.props.updateAction(this.props.owner)} full success>
             <Text style={{color : 'white', textAlign: 'center'}}> UPDATE </Text> 
           </Button>
         </View>
@@ -25,7 +25,7 @@ class ButtonUpdate extends Component {
 }
 
 const mapStateToProps = state => ({
-  orderLists: this.props.orderLists
+  owner: state.owner
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

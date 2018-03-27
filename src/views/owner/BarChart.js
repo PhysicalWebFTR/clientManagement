@@ -64,11 +64,11 @@ class BarChart extends Component {
 
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state
-    const name = 'Analytical Type 2'
+    const name = 'Summary'
     return {
       title: name,
       drawerIcon: ({ tintColor }) => (
-        <Icon name="md-person" size={24} style={{ color: tintColor }} />
+        <Icon name="md-stats" size={24} style={{ color: tintColor }} />
       ),
       headerLeft:
         <Icon
@@ -82,12 +82,12 @@ class BarChart extends Component {
 
   render() {
     let options = {
-      width: 300,
+      width: 250,
       height: 300,
       margin: {
         top: 20,
         left: 25,
-        bottom: 60,
+        bottom: 150,
         right: 20
       },
       color: '#e3af2f',
@@ -106,10 +106,10 @@ class BarChart extends Component {
         orient: 'bottom',
         label: {
           fontFamily: 'Arial',
-          fontSize: 10,
+          fontSize: 12,
           fontWeight: true,
           fill: '#34495E',
-          rotate: 40
+          rotate: 45
         }
       },
       axisY: {
@@ -131,7 +131,6 @@ class BarChart extends Component {
     if (this.state.datas.length > 0) {
       return (
         <View style={styles.container}>
-          <Text style={styles.title} > Product Order Summary </Text>
           <Bar data={this.state.datas} options={options} accessorKey='total'/>
         </View>
       )

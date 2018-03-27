@@ -1,4 +1,4 @@
-#Tue Mar 27 16:58:43 WIB 2018
-base.0=/home/fuadi/Documents/fase-3/week-3/final/clientOwner/client/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+#Tue Mar 27 23:37:34 WIB 2018
+base.0=/Users/tobiaskusnaman/Documents/yow/test_27/clientManagement/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
-file.0=/home/fuadi/Documents/fase-3/week-3/final/clientOwner/client/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
+file.0=/Users/tobiaskusnaman/Documents/yow/test_27/clientManagement/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

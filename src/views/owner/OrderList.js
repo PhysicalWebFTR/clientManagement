@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Pusher from 'pusher-js/react-native'; // for using Pusher inside React Native
 
-import ButtonUpdate from './ButtonUpdate'
+// import ButtonUpdate from './ButtonUpdate'
 
-import { changeStatusAction, fetchOwner } from '../../store/actions'
+import { changeStatusAction, fetchOwner, update } from '../../store/actions'
 class OrderList extends Component {
   constructor(props) {
     super(props)
@@ -45,38 +45,56 @@ class OrderList extends Component {
 
   componentDidMount () {
     this.getPusherData()
-    console.log(this.props)
+    console.log('didMount', this.props)
+  }
+
+  handleUpdate = () => {
+    console.log('ini update')
+    this.props.update(this.props.owner)
   }
 
   render() {
-    return (
-      <View>
-        <FlatList
-          extraData={this.state.isRefresh}
-          data={this.props.owner}
-          renderItem={({item}) => (
-            <Card>
-            <CardItem style={{backgroundColor: item.isReady ? '#fff8a8' : 'white'}}>  
-                <Left style={style.leftList}>
-                  <Text>Table: {item.table.name}</Text>
-                  <Text>{item.menuList.name} </Text>
-                  <Text>quantity: {item.quantity} </Text>
-                </Left>
-                <Right>
-                  <Button 
-                    style={style.submitButton} warning
-                    onPress={() => this.handleButton(item)}
-                    >
-                    <Text style={{color: 'white'}}> V </Text>
-                  </Button>
-                </Right>
-            </CardItem>
-          </Card>
-          )}
-        />
-        <ButtonUpdate />
-      </View>
-    );
+    if (this.props.owner.length > 0) {
+      return (
+        <View>
+          <FlatList
+            extraData={this.state.isRefresh}
+            data={this.props.owner}
+            renderItem={({item}) => (
+              <Card>
+              <CardItem style={{backgroundColor: item.isReady ? '#fff8a8' : 'white'}}>  
+                  <Left style={style.leftList}>
+                    <Text>Table: {item.table.name}</Text>
+                    <Text>{item.menuList.name} </Text>
+                    <Text>quantity: {item.quantity} </Text>
+                  </Left>
+                  <Right>
+                    <Button 
+                      style={style.submitButton} warning
+                      onPress={() => this.handleButton(item)}
+                      >
+                      <Text style={{color: 'white'}}> V </Text>
+                    </Button>
+                  </Right>
+              </CardItem>
+            </Card>
+            )}
+          />
+          <View>
+            <Button full success
+            onPress={() => this.handleUpdate()} >
+              <Text style={{color : 'white', textAlign: 'center'}}> UPDATE </Text> 
+            </Button>
+          </View>
+        </View>
+      );
+    } else {
+      return(
+        <View>
+          <Text>You don't have any order</Text>
+        </View>
+      )
+    }
   }
 
   getPusherData () {
@@ -91,6 +109,7 @@ class OrderList extends Component {
       this.setState({
         isRefresh
       })
+      console.log('ini state', this.state)
       console.log('get order list : ', data)
       console.log('ini props an yg keknya owner : ', this.props.owner)
       let menu = this.props.owner
@@ -121,7 +140,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeStatusAction,
-  fetchOwner
+  fetchOwner,
+  update
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderList)
