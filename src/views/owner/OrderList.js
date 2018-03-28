@@ -49,8 +49,11 @@ class OrderList extends Component {
   }
 
   handleUpdate = () => {
-    console.log('ini update')
     this.props.update(this.props.owner)
+    let isRefresh = !this.state.isRefresh
+    this.setState({
+      isRefresh
+    })
   }
 
   render() {
@@ -90,8 +93,8 @@ class OrderList extends Component {
       );
     } else {
       return(
-        <View>
-          <Text>You don't have any order</Text>
+        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+          <Text style={style.zeroList}>You don't have any order</Text>
         </View>
       )
     }
@@ -113,9 +116,16 @@ class OrderList extends Component {
       console.log('get order list : ', data)
       console.log('ini props an yg keknya owner : ', this.props.owner)
       let menu = this.props.owner
-      console.log('ini menu : ', menu)
-      menu.push(data)
-      this.props.fetchOwner(menu)
+      if (menu.length > 0) {
+        let idx = menu.findIndex(m => m.menuList._id === data.menuList._id)
+        if (idx === -1) {
+          menu.push(data)
+          this.props.fetchOwner(menu) 
+        }
+      } else {
+        menu.push(data)
+        this.props.fetchOwner(menu)
+      }
     });
     channel.bind('restaurant-data-failed', (data) => {
       Alert.alert('Error connection, please try again')
@@ -131,6 +141,10 @@ const style = StyleSheet.create({
   submitButton: {
     width: 45,
     justifyContent: 'center'
+  },
+  zeroList: {
+    textAlign: 'center',
+    fontSize: 20
   }
 })
 

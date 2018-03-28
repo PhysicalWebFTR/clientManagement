@@ -23,7 +23,7 @@ export default class App extends React.Component {
   onChangeState = () => {
     setTimeout(() => {
       this.setState({ isSplash: false })
-    }, 2000)
+    }, 0)
   }
 
   render() {

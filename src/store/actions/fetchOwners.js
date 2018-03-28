@@ -24,9 +24,11 @@ export function fetchOwner (payload) {
 }
 
 export function update (menuList) {
+  console.log('menuList', menuList)
   let newMenu = menuList.filter(menu => {
-    return menu.isReady === true
+    return menu.isReady === false
   })
+  console.log('ini new Menu', newMenu)
   return {
     type: UPDATE,
     payload: newMenu
