@@ -106,7 +106,11 @@ const RootStack =
                     style={styles.itemImage}/>
                 </Container>
                 <Container style={styles.itemBackground}>
-                  <Image source={require('./src/res/logo.png')} style={styles.itemName} />
+                  <Text style={{
+                    textAlign: 'center',
+                    fontSize: 20,
+                    color: '#fff'
+                  }}> Momakan</Text>
                 </Container>
               </Container>
               <DrawerItems {...props} activeTintColor='#2196f3' padding='16' />
