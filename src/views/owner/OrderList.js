@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, FlatList, Alert, Image } from 'react-native';
+import { StyleSheet, View, Text, FlatList, Alert, Image, ScrollView } from 'react-native';
 import { Card, CardItem, Body, Left, Right, Button, Icon } from 'native-base';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -45,7 +45,6 @@ class OrderList extends Component {
 
   componentDidMount () {
     this.getPusherData()
-    console.log('didMount', this.props)
   }
 
   handleUpdate = () => {
@@ -60,6 +59,7 @@ class OrderList extends Component {
     if (this.props.owner.length > 0) {
       return (
         <View>
+          <ScrollView>
           <FlatList
             extraData={this.state.isRefresh}
             data={this.props.owner}
@@ -89,6 +89,7 @@ class OrderList extends Component {
               <Text style={{color : 'white', textAlign: 'center'}}> UPDATE </Text> 
             </Button>
           </View>
+          </ScrollView>
         </View>
       );
     } else {
